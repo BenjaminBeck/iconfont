@@ -1,7 +1,7 @@
 {
   "name": "laxap/iconfont",
   "type": "typo3-cms-extension",
-  "version": "10.4",
+  "version": "10.4.1",
   "description": "Support for fontawesome or a custom icon font. Allows to show an icon besides headers and to add icons via RTE. RTE feature based on code from ext:fontawesome.",
   "keywords": [
     "typo3",
