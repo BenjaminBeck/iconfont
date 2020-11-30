@@ -19,12 +19,12 @@ $EM_CONF[$_EXTKEY] = array(
 	'modify_tables' => 'tt_content,pages',
 	'clearCacheOnLoad' => 1,
 	'lockType' => '',
-	'version' => '0.9.0',
+	'version' => '10.4.0',
 	'constraints' => array(
         'depends' => [
-            'typo3' => '9.5.0-9.5.99',
-            'backend' => '9.5.0-9.5.99',
-            'frontend' => '9.5.0-9.5.99'
+            'typo3' => '10.4.0-10.4.99',
+            'backend' => '10.4.0-10.4.99',
+            'frontend' => '10.4.0-10.4.99'
         ],
 		'conflicts' => array(
 			'fontawesome' => '',
