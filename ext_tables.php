@@ -3,6 +3,8 @@ if (!defined ('TYPO3_MODE')) die ('Access denied.');
 
 // --- Get extension configuration ---
 $extConf = array();
+$extKey = 'iconfont';
+
 if ( strlen($_EXTCONF) ) {
 	$extConf = unserialize($_EXTCONF);
 }
@@ -14,7 +16,7 @@ if ( ! isset($extConf['iconFont']) || trim($extConf['iconFont']) == '' ) {
 // --- Fontawesome or custom ---
 switch ( $extConf['iconFont'] ) {
 	case 'custom':
-		if ( isset($extConf['customIconDefinitionFile']) && file_exists(PATH_site . $extConf['customIconDefinitionFile']) ) {
+		if ( isset($extConf['customIconDefinitionFile']) && file_exists(\TYPO3\CMS\Core\Core\Environment::getPublicPath() .'/'. $extConf['customIconDefinitionFile']) ) {
 			$iconDefinitionFile = $extConf['customIconDefinitionFile'];
 		} else {
 			$iconDefinitionFile = '';
@@ -37,7 +39,7 @@ if ( $iconDefinitionFile != '' ) {
 	$iconFontOption = array(array('', 0));
 
 	// Load array with icons (overwrites $iconFontOption)
-	include(PATH_site . $iconDefinitionFile);
+	include(\TYPO3\CMS\Core\Core\Environment::getPublicPath().'/' . $iconDefinitionFile);
 
 	// Add field
 	$tempColumn = array(
@@ -69,12 +71,12 @@ if ( $iconDefinitionFile != '' ) {
 	}
 
 	// Default TS for iconfont
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Icon Font');
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($extKey, 'Configuration/TypoScript', 'Icon Font');
 
 	if (TYPO3_MODE == "BE")   {
 		if ( $stylesheetDir != '' ) {
-			$GLOBALS['TBE_STYLES']['skins'][$_EXTKEY]['name'] = $_EXTKEY;
-			$GLOBALS['TBE_STYLES']['skins'][$_EXTKEY]['stylesheetDirectories']['css'] = $stylesheetDir;
+			$GLOBALS['TBE_STYLES']['skins'][$extKey]['name'] = $extKey;
+			$GLOBALS['TBE_STYLES']['skins'][$extKey]['stylesheetDirectories']['css'] = $stylesheetDir;
 		}
 
 	}
